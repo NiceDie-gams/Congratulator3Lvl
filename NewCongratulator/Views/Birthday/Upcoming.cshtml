@@ -1,0 +1,44 @@
+﻿@model List<NewCongratulator.Models.HumanBirthdayData>
+@{
+	ViewData["Title"] = "Upcoming";
+}
+
+<h3>Список ближайщих дней рождения</h3>
+<table class="BDTable">
+	<thead>
+		<tr>
+			<th>Имя Фамилия</th>
+			<th>Возраст</th>
+			<th>Дата рождения</th>
+			<th>Email адрес</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@item.fullName <br />
+					<img src="@item.imageUrl" alt="Фото" width="150" class="PImage"/>
+				</td>
+				<td>@item.age</td>
+				<td>@item.birthdayDate</td>
+				<td>@item.emailAddress</td>
+				<td>
+					<form asp-action="Edit" method="get">
+						<button type="submit" name="id" value="@item.Id" class="btn btn-outline-dark">Изменить</button>
+					</form>
+					<form asp-action="Delete">
+						<input type="hidden" name="id" value="@item.Id" />
+						<button type="submit" class="btn btn-outline-danger">Удалить</button>
+					</form>
+					<a asp-controller="SendEmail" asp-action="EmailForm" asp-route-email="@item.emailAddress">
+						Поздравить @item.fullName 
+					</a> 
+
+
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

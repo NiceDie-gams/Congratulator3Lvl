@@ -1,0 +1,28 @@
+﻿@model NewCongratulator.Dtos.EmailSendDto
+
+<h2>Отправить поздравление</h2>
+
+<form asp-action="EmailForm" method="post">
+    <input type="hidden" asp-for="Email" />
+
+    <div>
+        <label asp-for="Subject">Заголовок</label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Body">Текст поздравления</label>
+        <textarea asp-for="Body" rows="5" class="form-control"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

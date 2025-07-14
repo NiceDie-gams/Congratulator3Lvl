@@ -1,0 +1,48 @@
+﻿@model List<NewCongratulator.Models.HumanBirthdayData>
+@{
+	ViewData["Title"] = "Index";
+}
+
+
+<h3>Таблица дней рождения</h3>
+<form asp-action="Create" method="get" enctype="multipart/form-data">
+	<button type="submit" class="AddCongr">Добавить поздравление</button>
+</form>
+<form asp-action="Index" method="get" enctype="multipart/form-data">
+	<button type="submit" name="decending" value="false" class="btn btn-outline-success">Сортировка по возрастанию</button>
+	<button type="submit" name="decending" value="true" class="btn btn-outline-success">Сортировка по убыванию</button>
+</form>
+<table class="BDTable">
+	<thead>
+		<tr>
+			<th>Имя Фамилия</th>
+			<th>Возраст</th>
+			<th>Дата рождения</th>
+			<th>Email адрес</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>
+					@item.fullName <br />
+					<img src="@item.imageUrl" alt="Фото" width="150" class="PImage"/>
+				</td>
+				<td>@item.age</td>
+				<td>@item.birthdayDate</td>
+				<td>@item.emailAddress</td>
+				<td>
+					<form asp-action="Edit" method="get">
+					 	<button type="submit" name="id" value="@item.Id" class="btn btn-outline-dark">Изменить</button> 
+					</form>
+					<form asp-action="Delete">
+						<input type="hidden" name="id" value="@item.Id" />
+						<button type="submit" class="btn btn-outline-danger">Удалить</button>
+					</form>
+					
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model NewCongratulator.Models.HumanBirthdayData;
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h3>Изменение данных о человеке</h3>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+	<input type="hidden" asp-for="Id"/>
+	<div class="form-group">
+		<label for="fullName">Имя Фамилия</label>
+		<input type="text" class="form-control" asp-for="fullName" />
+	</div>
+	<div class="form-group">
+		<label for="birthdayDate">Дата рождения</label>
+		<input type="date" class="form-control" asp-for="birthdayDate" />
+	</div>
+	<div class="form-group">
+		<label for="emailAddress">Email Адрес</label>
+		<input type="text" class="form-control" asp-for="emailAddress" />
+	</div>
+	<div class="imageForm">
+		<label for="imageUrl">Вебрите фото</label>
+		<input type="file" name="imageFile" class="form-control" />
+	</div>
+	<button type="submit" class="btn btn-primary">Загрузить</button>
+</form>
